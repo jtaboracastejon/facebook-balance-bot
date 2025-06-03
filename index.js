@@ -162,6 +162,7 @@ bot.onText(/\/ayuda/, async (msg) => {
 bot.onText(/\/reset/, async (msg) => {
     const chatId = msg.chat.id;
     const adminChatId = process.env.ADMIN_CHAT_ID || process.env.TELEGRAM_CHAT_ID;
+    console.log(`Comando /reset recibido por el chat ID: ${chatId}`);
 
     if (chatId.toString() === adminChatId) {
         resetNotificationState();
