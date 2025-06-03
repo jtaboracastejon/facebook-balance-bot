@@ -9,9 +9,14 @@ import express from 'express'; // Add this import
 
 dotenv.config();
 
+console.log('Starting Facebook Balance Bot...');
+console.log(`Environment PORT: ${process.env.PORT}`);
+
 // Create Express server for keep-alive pings
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+console.log(`Attempting to bind to port ${PORT}...`);
 
 // Simple route that returns 200 OK for keep-alive services
 app.get('/', (req, res) => {
@@ -23,7 +28,7 @@ app.get('/health', (req, res) => {
   res.status(200).json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
-// Start the server
+// Start the server - move this UP in your code, before the bot setup
 app.listen(PORT, () => {
   console.log(`🌐 Web server running on port ${PORT}`);
 });
