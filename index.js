@@ -196,8 +196,8 @@ Este mensaje confirma que el sistema de notificaciones está funcionando correct
         await bot.sendMessage(chatId, '❌ No tienes permisos para usar este comando.');
     }
 });
-// --- Verificación periódica (cada 6 horas) ---
-scheduleJob('0 */6 * * *', () => {
+// --- Verificación periódica (cada 2 horas) ---
+scheduleJob('0 */2 * * *', () => {
     console.log('🔄 Ejecutando verificación programada de saldo');
     checkBalanceAndNotify();
 });
