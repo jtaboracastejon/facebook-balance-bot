@@ -5,8 +5,28 @@ import { sendTelegramMessage } from './utils.js';
 import { scheduleJob } from 'node-schedule';
 import fs from 'fs';
 import path from 'path';
+import express from 'express'; // Add this import
 
 dotenv.config();
+
+// Create Express server for keep-alive pings
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+// Simple route that returns 200 OK for keep-alive services
+app.get('/', (req, res) => {
+  res.status(200).send('Facebook Balance Bot is running!');
+});
+
+// Health check endpoint
+app.get('/health', (req, res) => {
+  res.status(200).json({ status: 'ok', timestamp: new Date().toISOString() });
+});
+
+// Start the server
+app.listen(PORT, () => {
+  console.log(`🌐 Web server running on port ${PORT}`);
+});
 
 const bot = new TelegramBot(process.env.TELEGRAM_BOT_TOKEN, { polling: true });
 const STATE_FILE = 'notification_state.json';
